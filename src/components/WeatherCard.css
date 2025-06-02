@@ -7,3 +7,14 @@
     box-shadow: 0 2px 8px rgb(0, 0, 0, 0.12);
     text-align: center;
 }
+
+.weather-card h3 {
+    margin: 0 0 10px;
+    color: #0277bd;
+}
+
+.weather-description {
+    text-transform: capitalize;
+    font-style: italic;
+    color: #555;
+}
