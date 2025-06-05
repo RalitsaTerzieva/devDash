@@ -27,8 +27,8 @@ const WeatherCard = ({ city = 'London' }) => {
         <div className="weather-card">
             <h3>{weather.name}</h3>
             <p className="weather-description">{weather.weather[0].description}</p>
-            <p>Temp: {weather.main.temp}</p>
-            <p>Wind: {weather.wind.speed} m/s</p>
+            <p className="weather-text">Temp: {weather.main.temp}</p>
+            <p className="weather-text">Wind: {weather.wind.speed} m/s</p>
         </div>
     );
 };
