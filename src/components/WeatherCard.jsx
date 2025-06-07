@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import './WeatherCard.css';
 
 
 const WeatherCard = ({ city = 'London' }) => {
     const [weather, setWeather] = useState(null);
 
     const apiKey = import.meta.env.VITE_APP_WEATHER_API_KEY;
-
+   console.log('KEY', apiKey)
     useEffect(() => {
         const fetchWeather = async () => {
             try {
-                const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?=${city}&appid=${apiKey}&units=metric`);
+                const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
                 const data = await res.json();
                 setWeather(data);
             } catch (error) {
