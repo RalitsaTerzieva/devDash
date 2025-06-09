@@ -8,7 +8,7 @@ function App() {
     <div style={{ display: 'flex', gap: '20px', padding: '2rem'}}>
       <WeatherCard city="London" />
       <CalendarCard />
-      <GithubCard />
+      <GithubCard username="getify"/>
     </div>
   )
 }
