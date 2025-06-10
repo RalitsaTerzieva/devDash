@@ -5,7 +5,8 @@ export const GithubCard = ({ username }) => {
 
     useEffect(() => {
         const getData = async () => {
-            const res = await fetch(`https://apigithub.com/users/${username}`);
+            const res = await fetch(`https://api.github.com/users/${username}`);
+            console.log('RES', res)
             const json = await res.json();
             setData(json);
         }
