@@ -1,9 +1,11 @@
+import CalendarCard from "./CalendarCard";
 import { GithubCard } from "./GithubCard";
+import WeatherCard from "./WeatherCard";
 
 const componentMap = {
-    // weather: WeatherCard,
+    weather: WeatherCard,
     github: GithubCard,
-    // calenar: CalendarCard,
+    calenar: CalendarCard,
 };
 
 export const WidgetRenderer = ({ type, props }) => {
