@@ -1,11 +1,12 @@
 import WeatherCard from "./components/WeatherCard";
 import CalendarCard from "./components/CalendarCard";
 import { GithubCard } from "./components/GithubCard";
+import './App.css'; 
 
 function App() {
 
   return (
-    <div style={{ display: 'flex', gap: '20px', padding: '2rem'}}>
+    <div className="app">
       <WeatherCard city="London" />
       <CalendarCard />
       <GithubCard username="getify"/>
