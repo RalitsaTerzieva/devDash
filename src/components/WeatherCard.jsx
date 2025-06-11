@@ -6,7 +6,7 @@ const WeatherCard = ({ city = 'London' }) => {
     const [weather, setWeather] = useState(null);
 
     const apiKey = import.meta.env.VITE_APP_WEATHER_API_KEY;
-   console.log('KEY', apiKey)
+   
     useEffect(() => {
         const fetchWeather = async () => {
             try {
