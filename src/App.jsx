@@ -1,5 +1,5 @@
 import WeatherCard from "./components/WeatherCard";
-import CalendarCard from "./components/CalendarCard";
+import CalendarCard from "./components/CalendarCard/CalendarCard";
 import { GithubCard } from "./components/GithubCard";
 import './App.css'; 
 

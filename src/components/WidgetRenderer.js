@@ -1,4 +1,4 @@
-import CalendarCard from "./CalendarCard";
+import CalendarCard from "./CalendarCard/CalendarCard";
 import { GithubCard } from "./GithubCard";
 import WeatherCard from "./WeatherCard";
 
