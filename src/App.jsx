@@ -1,6 +1,6 @@
-import WeatherCard from "./components/WeatherCard";
+import WeatherCard from "./components/WeatherCard/WeatherCard";
 import CalendarCard from "./components/CalendarCard/CalendarCard";
-import { GithubCard } from "./components/GithubCard";
+import { GithubCard } from "./components/GithubCard/GithubCard";
 import './App.css'; 
 
 function App() {

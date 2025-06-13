@@ -1,6 +1,6 @@
 import CalendarCard from "./CalendarCard/CalendarCard";
-import { GithubCard } from "./GithubCard";
-import WeatherCard from "./WeatherCard";
+import { GithubCard } from "./GithubCard/GithubCard";
+import WeatherCard from "./WeatherCard/WeatherCard";
 
 const componentMap = {
     weather: WeatherCard,
