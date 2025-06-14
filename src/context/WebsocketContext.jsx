@@ -1,30 +1,42 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useRef } from "react";
 
 export const WebSocketContext = createContext(null);
 
 export function WebSocketProvider({ children }) {
   const [messages, setMessages] = useState([]);
+  const socketRef = useRef(null);
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:8080");
+    socketRef.current = new WebSocket("ws://localhost:8080");
 
-    socket.addEventListener("open", () => {
+    socketRef.current.addEventListener("open", () => {
       console.log("WebSocket connected.");
     });
 
-    socket.addEventListener("message", (event) => {
+    socketRef.current.addEventListener("message", (event) => {
       setMessages((prev) => [...prev, event.data]);
     });
 
-    socket.addEventListener("close", () => {
+    socketRef.current.addEventListener("close", () => {
       console.log("WebSocket disconnected.");
     });
 
-    return () => socket.close();
+    return () => {
+      socketRef.current.close();
+    };
   }, []);
 
+  // Function to send a message via websocket
+  const sendMessage = (msg) => {
+    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+      socketRef.current.send(msg);
+    } else {
+      console.warn("WebSocket is not open");
+    }
+  };
+
   return (
-    <WebSocketContext.Provider value={{ messages }}>
+    <WebSocketContext.Provider value={{ messages, sendMessage }}>
       {children}
     </WebSocketContext.Provider>
   );
