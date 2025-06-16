@@ -20,3 +20,9 @@ This project uses **Vitest** as the test runner along with **React Testing Libra
 ```bash
 npm run test
 yarn test
+
+### Test setup
+
+- Tests are written using **Vitest**, which provides a fast and easy-to-use testing environment.
+- React components are tested using **React Testing Library**, focusing on testing components from the user’s perspective.
+- Mocking utilities like `vi.mock` (Vitest’s equivalent of Jest mocks) are used for mocking functions and modules.
