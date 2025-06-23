@@ -29,7 +29,7 @@ server.on('connection', (ws) => {
 
   ws.on('close', () => {
     console.log('Client disconnected');
-    clearInterval(intervalId); // Clear interval when client disconnects
+    clearInterval(intervalId);
   });
 });
 
