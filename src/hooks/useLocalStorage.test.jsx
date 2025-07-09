@@ -1,5 +1,5 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
+
 import { useState, useEffect } from 'react';
 import { vi, describe, it, beforeEach, expect } from 'vitest';
 
