@@ -13,5 +13,8 @@ describe('getRandomInt', () => {
     }
   });
 
-  
+  it('works correctly when min === max', () => {
+    const result = getRandomInt(3, 3);
+    expect(result).toBe(3);
+  });
 });
