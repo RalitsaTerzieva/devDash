@@ -12,5 +12,9 @@ describe('searchWidgets', () => {
     const result = searchWidgets(widgets, 'news');
     expect(result).toEqual([{ title: 'News' }]);
   });
-
+  
+  it('should be case-insensitive', () => {
+    const result = searchWidgets(widgets, 'WEATHER');
+    expect(result).toEqual([{ title: 'Weather' }]);
+  });
 });
