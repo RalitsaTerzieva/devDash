@@ -17,4 +17,9 @@ describe('searchWidgets', () => {
     const result = searchWidgets(widgets, 'WEATHER');
     expect(result).toEqual([{ title: 'Weather' }]);
   });
+
+  it('should return empty array if no match', () => {
+    const result = searchWidgets(widgets, 'sports');
+    expect(result).toEqual([]);
+  });
 });
