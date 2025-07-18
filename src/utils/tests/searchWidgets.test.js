@@ -22,4 +22,9 @@ describe('searchWidgets', () => {
     const result = searchWidgets(widgets, 'sports');
     expect(result).toEqual([]);
   });
+
+  it('should return all widgets if query is empty', () => {
+    const result = searchWidgets(widgets, '');
+    expect(result).toEqual(widgets);
+  });
 });
