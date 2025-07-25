@@ -40,5 +40,34 @@ describe('GithubCard', () => {
         expect(screen.getByText(/Temp: 25°C/)).toBeInTheDocument();
         expect(screen.getByText(/Wind: 3 m\/s/)).toBeInTheDocument();
       });
+
+      it('renders WebSocket messages', async () => {
+        const mockWeather = {
+          name: 'London',
+          weather: [{ description: 'rain' }],
+          main: { temp: 15 },
+          wind: { speed: 5 },
+        };
+    
+        vi.stubGlobal('fetch', vi.fn(() =>
+          Promise.resolve({ json: () => Promise.resolve(mockWeather) })
+        ));
+    
+        const mockMessages = ['Message 1', 'Message 2'];
+    
+        render(
+          <WebSocketContext.Provider value={{ messages: mockMessages }}>
+            <WeatherCard />
+          </WebSocketContext.Provider>
+        );
+    
+        await waitFor(() => {
+          expect(screen.getByText('London')).toBeInTheDocument();
+        });
+    
+        mockMessages.forEach(msg => {
+          expect(screen.getByText(msg)).toBeInTheDocument();
+        });
+      });
       
 });
