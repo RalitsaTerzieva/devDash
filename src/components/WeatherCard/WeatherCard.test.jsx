@@ -39,9 +39,9 @@ describe('GithubCard', () => {
         expect(screen.getByText(/clear sky/i)).toBeInTheDocument();
         expect(screen.getByText(/Temp: 25°C/)).toBeInTheDocument();
         expect(screen.getByText(/Wind: 3 m\/s/)).toBeInTheDocument();
-      });
+    });
 
-      it('renders WebSocket messages', async () => {
+    it('renders WebSocket messages', async () => {
         const mockWeather = {
           name: 'London',
           weather: [{ description: 'rain' }],
@@ -68,6 +68,29 @@ describe('GithubCard', () => {
         mockMessages.forEach(msg => {
           expect(screen.getByText(msg)).toBeInTheDocument();
         });
-      });
+    });
+
+    it('fetches weather for default city when no city prop provided', async () => {
+        const mockWeather = {
+          name: 'London',
+          weather: [{ description: 'cloudy' }],
+          main: { temp: 20 },
+          wind: { speed: 4 },
+        };
+    
+        vi.stubGlobal('fetch', vi.fn(() =>
+          Promise.resolve({ json: () => Promise.resolve(mockWeather) })
+        ));
+    
+        render(
+          <WebSocketContext.Provider value={{ messages: [] }}>
+            <WeatherCard />
+          </WebSocketContext.Provider>
+        );
+    
+        await waitFor(() => {
+          expect(screen.getByText('London')).toBeInTheDocument();
+        });
+    });
       
 });
