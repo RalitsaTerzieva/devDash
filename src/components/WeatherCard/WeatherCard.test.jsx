@@ -92,5 +92,32 @@ describe('GithubCard', () => {
           expect(screen.getByText('London')).toBeInTheDocument();
         });
     });
+
+    it('renders without crashing when weather data is incomplete', async () => {
+        const incompleteWeather = {
+          name: 'Mystery City',
+          weather: [{}],
+          main: {},
+          wind: {},
+        };
+    
+        vi.stubGlobal('fetch', vi.fn(() =>
+          Promise.resolve({ json: () => Promise.resolve(incompleteWeather) })
+        ));
+    
+        render(
+          <WebSocketContext.Provider value={{ messages: [] }}>
+            <WeatherCard city="Mystery City" />
+          </WebSocketContext.Provider>
+        );
+    
+        await waitFor(() => {
+          expect(screen.getByText('Mystery City')).toBeInTheDocument();
+        });
+    
+        // Expect it to render with fallback or empty texts without throwing
+        expect(screen.getByText(/Temp:/)).toBeInTheDocument();
+        expect(screen.getByText(/Wind:/)).toBeInTheDocument();
+    });
       
 });
