@@ -120,4 +120,29 @@ describe('GithubCard', () => {
         expect(screen.getByText(/Wind:/)).toBeInTheDocument();
     });
       
+    it('handles fetch failure gracefully', async () => {
+        vi.stubGlobal('fetch', vi.fn(() =>
+          Promise.reject(new Error('Fetch failed'))
+        ));
+    
+        // Mock console.error to avoid noisy test output
+        const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+    
+        render(
+          <WebSocketContext.Provider value={{ messages: [] }}>
+            <WeatherCard city="Nowhere" />
+          </WebSocketContext.Provider>
+        );
+    
+        expect(screen.getByText(/loading/i)).toBeInTheDocument();
+    
+        await waitFor(() => {
+          expect(consoleSpy).toHaveBeenCalledWith(
+            'Failed to fetch weather',
+            expect.any(Error)
+          );
+        });
+    
+        consoleSpy.mockRestore();
+    });
 });
