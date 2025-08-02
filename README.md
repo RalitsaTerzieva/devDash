@@ -19,3 +19,4 @@ This project uses **Vitest** as the test runner along with **React Testing Libra
 
 ```bash
 npm run test
+yarn test
