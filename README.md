@@ -1,6 +1,6 @@
 # devDash project
 
-![App Screenshot](assets/project.png)
+![App Screenshot](src/assets/project.png)
 
 # React + Vite project
 
